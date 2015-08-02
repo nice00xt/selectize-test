@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Selectize.js Demo</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/stylesheet.css">
+		<link rel="stylesheet" href="dist/css/selectize.default.css">
+		<!--[if IE 8]><script src="js/es5.js"></script><![endif]-->
+		<script src="js/jquery.js"></script>
+		<script src="dist/js/standalone/selectize.js"></script>
+		<script src="js/index.js"></script>
+	</head>
+    <body>
+		<div id="wrapper">
+			<h1>Selectize.js Get custom data attribute</h1>
+			<p>juan guillermo</p>
+			<select class="sel" id="ids">
+				<option value=""></option>
+				<option value="option1" pro="precio1" data-price="3.00">uno</option>
+				<option value="option2" pro="precio2" data-price="1.00">dos</option>
+				<option value="option3" pro="precio3" data-price="23.00">tres</option>
+
+			</select>
+
+			<script type="text/javascript">
+				$('.sel').selectize({
+					onInitialize: function () {
+						// Get custom data attribute fron option 
+						var s = this;
+						this.revertSettings.$children.each(function () {
+						    $.extend(s.options[this.value], $(this).data());
+						});
+    			},
+					render: {
+						// render html template option tags
+						option: function (item, escape){
+							return '<li class="list">' +  item.value  + '<span class="right">' + item.price + '</span>' + '</li>';
+						},
+						// render html template input field tag (item)
+						item: function (item, escape) {
+							return '<li class="list">' +  item.value  + '<span class="right">' + item.price + '</span>' + '</li>';
+						}
+					}
+				});
+
+			</script>
+			<style>
+				.list{
+					list-style: none;
+					width: 100%;
+				}
+				.right{
+					position: relative !important;
+					float: right !important;
+					color: grey;
+					margin-right: 23px;
+				}
+			</style>
+		</div>
+	</body>
+</html>
