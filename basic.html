@@ -32,12 +32,13 @@
 			<script type="text/javascript">
 				$('.sel').selectize({
 					onInitialize: function () {
-						// Get custom data attribute fron option 
+						// Get custom data attribute from option 
 						var s = this;
 						this.revertSettings.$children.each(function () {
 						    $.extend(s.options[this.value], $(this).data());
 						});
     			},
+    			labelField: "value"
 					render: {
 						// render html template option tags
 						option: function (item, escape){
